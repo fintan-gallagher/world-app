@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { format } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
 const LocalTimeCard = ({ timezone }) => {
     const [localTime, setLocalTime] = useState('');
@@ -33,10 +35,13 @@ const LocalTimeCard = ({ timezone }) => {
         return <div>Loading local time...</div>;
     }
 
+    // Convert the UTC time to the specified timezone
+    const zonedTime = toZonedTime(localTime, timezone);
+
     return (
         <div>
             <h2>Local Time</h2>
-            <p>{new Date(localTime).toLocaleString()}</p>
+            <p>{format(zonedTime, 'PPpp')}</p>
         </div>
     );
 };
