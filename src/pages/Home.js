@@ -4,9 +4,9 @@ import { Row } from 'react-bootstrap';
 import CountryCard from '../components/CountryCard';
 
 
-const Home = ({ countries }) => {
+const Home = () => {
     const [countriesList, setCountriesList] = useState([]);
-    const [ searchTerm, setSearchTerm] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(null)
 
     useEffect(() => {
         if (!searchTerm) {
@@ -16,16 +16,19 @@ const Home = ({ countries }) => {
                     setCountriesList(response.data);
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error(error)
                 });
         }
-    }, [searchTerm]);
 
+        setCountriesList(countriesList.filter((country) => {
+            return country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+        }))
+
+    }, [searchTerm]);
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value)
-    };
-
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         if (searchTerm) {
@@ -41,17 +44,17 @@ const Home = ({ countries }) => {
     }
 
     let countryCards = countriesList.map((country, index) => {
-        return(
-        <>
-        <CountryCard
-            key={country.ccn3}
-            flag={country.flags.png}
-            name={country.name.common}
-            region={country.region}
-            />
-        </>)
+        return (
+            <>
+                <CountryCard
+                    key={country.ccn3}
+                    flag={country.flags.png}
+                    name={country.name.common}
+                    region={country.region}
+                />
+            </>)
     });
-    
+
     return (
         <div>
             <form onSubmit={handleSubmit}>

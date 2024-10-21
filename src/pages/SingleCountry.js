@@ -4,7 +4,25 @@ import axios from 'axios';
 import { Row, Col, Image } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
+// components
 import LocalWeatherCard from '../components/LocalWeatherCard';
+import LocalTimeCard from '../components/LocalTimeCard';
+import LocalNewsCard from '../components/LocalNewsCard';
+
+// Map Icon Fix
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: markerIcon,
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+});
+/////
 
 const SingleCountry = () => {
     const { name } = useParams();
@@ -23,13 +41,13 @@ const SingleCountry = () => {
             });
     }, [name]);
 
-    
-
     if (!country) {
         return <div>Loading...</div>;
     }
 
     const position = [country.latlng[0], country.latlng[1]];
+    const timezone = `${country.region}/${country.capital}`;
+    console.log('Timezone:', timezone); // Add logging to verify the timezone value
 
     return (
         <Row>
@@ -61,9 +79,11 @@ const SingleCountry = () => {
                     </Marker>
                 </MapContainer>
                 <LocalWeatherCard lat={country.latlng[0]} lon={country.latlng[1]} />
+                <LocalTimeCard timezone={timezone} />
+                <LocalNewsCard country={country.cca2.toLowerCase()} />
             </Col>
         </Row>
     );
-}
+};
 
 export default SingleCountry;
