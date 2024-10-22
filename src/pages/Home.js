@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
+
 import CountryCard from '../components/CountryCard';
+import CountryCarousel from '../components/CountryCarousel';
 
 const Home = () => {
     const [countries, setCountries] = useState([]);
@@ -47,32 +49,35 @@ const Home = () => {
     }
 
     return (
-        <div className="pt-5">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Search for a country..."
-                    value={searchTerm}
-                    onChange={handleChange}
-                />
-                <button type="submit">Search</button>
-            </form>
-            <div className='mt-5'>
-                <h1>Countries</h1>
-                <Row>
-                    {countries.map(country => (
-                        <Col key={country.cca3} sm={12} md={6} lg={4} className="mb-4">
-                            <CountryCard
-                                name={country.name.common}
-                                flag={country.flags.png}
-                                region={country.region}
-                                population={country.population}
-                            />
-                        </Col>
-                    ))}
-                </Row>
+        <Container>
+            <div className="pt-5">
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Search for a country..."
+                        value={searchTerm}
+                        onChange={handleChange}
+                    />
+                    <button type="submit">Search</button>
+                </form>
+                <CountryCarousel />
+                <div className='mt-5'>
+                    <h1>Countries</h1>
+                    <Row>
+                        {countries.map(country => (
+                            <Col key={country.cca3} sm={12} md={6} lg={4} className="mb-4">
+                                <CountryCard
+                                    name={country.name.common}
+                                    flag={country.flags.png}
+                                    region={country.region}
+                                    population={country.population}
+                                />
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
             </div>
-        </div>
+        </Container>
     );
 };
 

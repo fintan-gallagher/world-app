@@ -1,0 +1,88 @@
+:root {
+    --background-color-light: linear-gradient(
+        145deg,
+        #e2dddd 10%,
+        #f0eeee 10.5% 19%,
+        #0000 19.5% 80.5%,
+        #f0eeee 81% 89.5%,
+        #8e8e8e 90%
+      ),
+      linear-gradient(
+          145deg,
+          #e2dddd 10%,
+          #f0eeee 10.5% 19%,
+          #0000 19.5% 80.5%,
+          #f0eeee 81% 89.5%,
+          #8e8e8e 90%
+        )
+        calc(54px) 108px,
+      linear-gradient(
+        35deg,
+        #e2dddd 10%,
+        #f0eeee 10.5% 19%,
+        #0000 19.5% 80.5%,
+        #f0eeee 81% 89.5%,
+        #8e8e8e 90%
+      ),
+      linear-gradient(
+          35deg,
+          #e2dddd 10%,
+          #f0eeee 10.5% 19%,
+          #0000 19.5% 80.5%,
+          #f0eeee 81% 89.5%,
+          #8e8e8e 90%
+        )
+        calc(54px) 108px,
+      conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #e2dddd 0)
+        calc(54px / 4) 0,
+      conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #8e8e8e 0) calc(54px) 0,
+      linear-gradient(90deg, #8e8e8e 38%, #e2dddd 0 50%, #8e8e8e 0 62%, #e2dddd 0);
+    --background-color-dark: linear-gradient(
+        145deg,
+        #454545 10%,
+        #646464 10.5% 19%,
+        #0000 19.5% 80.5%,
+        #646464 81% 89.5%,
+        #000000 90%
+      ),
+      linear-gradient(
+          145deg,
+          #454545 10%,
+          #646464 10.5% 19%,
+          #0000 19.5% 80.5%,
+          #646464 81% 89.5%,
+          #000000 90%
+        )
+        calc(54px) 108px,
+      linear-gradient(
+        35deg,
+        #454545 10%,
+        #646464 10.5% 19%,
+        #0000 19.5% 80.5%,
+        #646464 81% 89.5%,
+        #000000 90%
+      ),
+      linear-gradient(
+          35deg,
+          #454545 10%,
+          #646464 10.5% 19%,
+          #0000 19.5% 80.5%,
+          #646464 81% 89.5%,
+          #000000 90%
+        )
+        calc(54px) 108px,
+      conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #454545 0)
+        calc(54px / 4) 0,
+      conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #000000 0) calc(54px) 0,
+      linear-gradient(90deg, #000000 38%, #454545 0 50%, #000000 0 62%, #454545 0);
+  }
+  
+  .navbar-light {
+    background: var(--background-color-light);
+    background-size: 108px calc(2 * 108px / 3);
+  }
+  
+  .navbar-dark {
+    background: var(--background-color-dark);
+    background-size: 108px calc(2 * 108px / 3);
+  }
