@@ -1,6 +1,8 @@
 :root {
     --background-color-light: #fff; /* Light mode background color */
     --background-color-dark: #121212; /* Dark mode background color */
+    --background-image-light: url('../images/51a26d1d49a7.gif'); /* Light mode background image */
+    --background-image-dark: url('../images/c029e2a045c1.gif'); /* Dark mode background image */
 }
 
 html, body {
@@ -17,10 +19,10 @@ html, body {
     align-items: center;
     height: 100vh; 
     width: 100%; 
-    background-color: var(--background-color); /* Use CSS variable */
+    background-color: var(--background-color); 
     cursor: pointer;
     overflow: hidden; /* Ensure no overflow */
-    background-image: url('../images/5lwbm4j\ \(1\).gif'); /* Use the imported image */
+    background-image: var(--background-image);
     background-size: contain; /* Ensure the image covers the entire area */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */

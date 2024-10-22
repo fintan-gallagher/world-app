@@ -1,6 +1,5 @@
 body {
     font-family: 'MingLiu', sans-serif;
-    cursor: url('./assets/CSNormalSelect.cur'), auto;
     padding-top: 20px;
 }
 
@@ -30,14 +29,6 @@ body.dark-mode {
 }
 
 /* Custom cursors for different states */
-a:hover {
-    cursor: url('./assets/CSPercisionSelect.cur'), auto; /* Hover cursor */
-}
-
-button.btn {
-    cursor: url('./assets/CSPercisionSelect.cur'), auto; /* Active cursor */
-}
-
-input, textarea {
-    cursor: url('./assets/CSTextSelect.cur'), auto; /* Text input cursor */
+* {
+    cursor: url('assets/cruelty-squad.gif');
 }

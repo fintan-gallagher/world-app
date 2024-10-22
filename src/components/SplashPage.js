@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 import { useTheme } from '../Themes/ThemeContext';
-import '../Styles/SplashPage.css'; // Create this CSS file for styling
+import '../Styles/SplashPage.css'; // Import the CSS file
 
 const SplashPage = () => {
     const navigate = useNavigate();
@@ -13,8 +13,10 @@ const SplashPage = () => {
         const root = document.documentElement;
         if (theme === 'light') {
             root.style.setProperty('--background-color', 'var(--background-color-light)');
+            root.style.setProperty('--background-image', 'var(--background-image-light)');
         } else {
             root.style.setProperty('--background-color', 'var(--background-color-dark)');
+            root.style.setProperty('--background-image', 'var(--background-image-dark)');
         }
     }, [theme]);
 
