@@ -15,9 +15,9 @@ const CountryCard = (props) => {
             <Card.Img className='h-100 w-100' src={flag} variant='top'/>
             <Card.Body>
                 <Card.Title className="h4 font-weight-bold">
-                    <Link to={`/country/${name}`}>{name}</Link>
+                    <Link className="h3" to={`/country/${name}`}>{name}</Link>
                 </Card.Title>
-                <p className="h5 font-weight-bold">{region}</p>
+                <h4 className=" font-weight-bold">{region}</h4>
                 <Button
                     onClick={() => setOpen(!open)}
                     aria-controls="additional-info"
@@ -27,8 +27,8 @@ const CountryCard = (props) => {
                 </Button>
                 <Collapse in={open}>
                     <div id="additional-info">
-                        <p className="h5 font-weight-bold">Language: {props.language}</p>
-                        <p className="h5 font-weight-bold">Population: {props.population}</p>
+                        <p className="h4 font-weight-bold">Language: {props.languages}</p>
+                        <p className="h4 font-weight-bold">Population: {props.population}</p>
                     </div>
                 </Collapse>
             </Card.Body>

@@ -69,13 +69,13 @@ const SingleCountry = () => {
             <Col>
                 <h1>{country.name.common}</h1>
                 <h2>Official Name: {country.name.official}</h2>
-                <p>Region: {country.region}</p>
-                {country.subregion && <p>Sub Region: {country.subregion}</p>}
-                <p>Currency: {Object.values(country.currencies)[0].name} ({Object.values(country.currencies)[0].symbol})</p>
+                <h4>Region: {country.region}</h4>
+                {country.subregion && <h4>Sub Region: {country.subregion}</h4>}
+                <h4>Currency: {Object.values(country.currencies)[0].name} ({Object.values(country.currencies)[0].symbol})</h4>
                 <h1>Languages:</h1>
                 <ul>
                     {Object.values(country.languages).map((language, index) => (
-                        <li key={index}>{language}</li>
+                        <li className='h4' key={index}>{language}</li>
                     ))}
                 </ul>
                 

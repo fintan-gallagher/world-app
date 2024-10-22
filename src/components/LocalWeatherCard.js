@@ -29,10 +29,10 @@ const LocalWeatherCard = ({ lat, lon }) => {
     return (
         <div>
             <h2>Local Weather</h2>
-            <p>Temperature: {weather.main.temp}°C</p>
-            <p>Weather: {weather.weather[0].description}</p>
-            <p>Humidity: {weather.main.humidity}%</p>
-            <p>Wind Speed: {weather.wind.speed} m/s</p>
+            <h4>Temperature: {weather.main.temp}°C</h4>
+            <h4>Weather: {weather.weather[0].description}</h4>
+            <h4>Humidity: {weather.main.humidity}%</h4>
+            <h4>Wind Speed: {weather.wind.speed} m/s</h4>
         </div>
     );
 };
