@@ -8,11 +8,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import LocalWeatherCard from '../components/LocalWeatherCard';
 import LocalTimeCard from '../components/LocalTimeCard';
 import LocalNewsCard from '../components/LocalNewsCard';
+import LocalDishesCard from '../components/LocalDishesCard';
 
 // Map Icon Fix
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -27,8 +29,6 @@ L.Icon.Default.mergeOptions({
 const SingleCountry = () => {
     const { name } = useParams();
     const [country, setCountry] = useState(null);
-    const [localTime, setLocalTime] = useState('');
-    const [weather, setWeather] = useState(null);
 
     useEffect(() => {
         axios.get(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
@@ -50,9 +50,21 @@ const SingleCountry = () => {
     console.log('Timezone:', timezone); // Add logging to verify the timezone value
 
     return (
-        <Row>
+        <Row className='mt-5'>
             <Col>
                 <Image src={country.flags.png} alt={`${country.name.common}'s flag`} fluid />
+                <h1>Map:</h1>
+                <MapContainer center={position} zoom={5} style={{ height: '400px', width: '100%' }}>
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    <Marker position={position}>
+                        <Popup>
+                            {country.name.common}
+                        </Popup>
+                    </Marker>
+                </MapContainer>
             </Col>
             <Col>
                 <h1>{country.name.common}</h1>
@@ -66,22 +78,13 @@ const SingleCountry = () => {
                         <li key={index}>{language}</li>
                     ))}
                 </ul>
-                <h1>Map:</h1>
-                <MapContainer center={position} zoom={5} style={{ height: '400px', width: '100%' }}>
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                    <Marker position={position}>
-                        <Popup>
-                            {country.name.common}
-                        </Popup>
-                    </Marker>
-                </MapContainer>
+                
                 <LocalWeatherCard lat={country.latlng[0]} lon={country.latlng[1]} />
                 <LocalTimeCard timezone={timezone} />
-                <LocalNewsCard country={country.cca2.toLowerCase()} />
+                
             </Col>
+            <LocalNewsCard country={country.cca2.toLowerCase()} className='mt-5' />
+                <LocalDishesCard country={country.demonyms.eng.f} />
         </Row>
     );
 };

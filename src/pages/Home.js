@@ -1,62 +1,53 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import CountryCard from '../components/CountryCard';
 
-
 const Home = () => {
-    const [countriesList, setCountriesList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState(null)
+    const [countries, setCountries] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!searchTerm) {
-            axios.get('https://restcountries.com/v3.1/all')
-                .then(response => {
-                    console.log(response.data);
-                    setCountriesList(response.data);
-                })
-                .catch(error => {
-                    console.error(error)
-                });
-        }
-
-        setCountriesList(countriesList.filter((country) => {
-            return country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-        }))
-
-    }, [searchTerm]);
+        axios.get('https://restcountries.com/v3.1/all')
+            .then(response => {
+                setCountries(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error);
+                setLoading(false);
+            });
+    }, []);
 
     const handleChange = (e) => {
-        setSearchTerm(e.target.value)
-    }
+        setSearchTerm(e.target.value);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (searchTerm) {
             axios.get(`https://restcountries.com/v3.1/name/${searchTerm}`)
                 .then(response => {
-                    console.log(response.data);
-                    setCountriesList(response.data);
+                    setCountries(response.data);
                 })
                 .catch(error => {
-                    console.error(error);
+                    setError(error);
                 });
         }
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
     }
 
-    let countryCards = countriesList.map((country, index) => {
-        return (
-            <>
-                <CountryCard
-                    key={country.ccn3}
-                    flag={country.flags.png}
-                    name={country.name.common}
-                    region={country.region}
-                />
-            </>)
-    });
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
 
     return (
-        <div>
+        <div className="pt-5">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -66,11 +57,23 @@ const Home = () => {
                 />
                 <button type="submit">Search</button>
             </form>
-            <Row md={3} xs={1}>
-                {countryCards}
-            </Row>
+            <div className='mt-5'>
+                <h1>Countries</h1>
+                <Row>
+                    {countries.map(country => (
+                        <Col key={country.cca3} sm={12} md={6} lg={4} className="mb-4">
+                            <CountryCard
+                                name={country.name.common}
+                                flag={country.flags.png}
+                                region={country.region}
+                                population={country.population}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            </div>
         </div>
     );
-}
+};
 
 export default Home;

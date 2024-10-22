@@ -8,15 +8,19 @@ const LocalTimeCard = ({ timezone }) => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const TIME_URL = 'http://worldtimeapi.org/api/timezone';
+        const API_KEY = '410efc67714b4c87943c3be63c994940'; // Replace with your IPGeolocation API key
+        const TIME_URL = 'https://api.ipgeolocation.io/timezone';
 
         if (timezone) {
             console.log('Fetching time for timezone:', timezone);
 
-            axios.get(`${TIME_URL}/${timezone}`)
+            const url = `${TIME_URL}?apiKey=${API_KEY}&tz=${timezone}`;
+            console.log('Time API Request URL:', url); // Log the URL
+
+            axios.get(url)
                 .then((res) => {
                     console.log('Time Response:', res.data);
-                    setLocalTime(res.data.datetime);
+                    setLocalTime(res.data.date_time_txt); // Adjust this based on the actual structure
                 })
                 .catch((e) => {
                     console.error('Time API Error:', e);
@@ -36,7 +40,7 @@ const LocalTimeCard = ({ timezone }) => {
     }
 
     // Convert the UTC time to the specified timezone
-    const zonedTime = toZonedTime(localTime, timezone);
+    const zonedTime = toZonedTime(new Date(localTime), timezone);
 
     return (
         <div>

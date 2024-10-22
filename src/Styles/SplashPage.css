@@ -1,0 +1,27 @@
+:root {
+    --background-color-light: #fff; /* Light mode background color */
+    --background-color-dark: #121212; /* Dark mode background color */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+    width: 100%;
+    height: 100%;
+}
+
+.splash-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100%; 
+    background-color: var(--background-color); /* Use CSS variable */
+    cursor: pointer;
+    overflow: hidden; /* Ensure no overflow */
+    background-image: url('../images/5lwbm4j\ \(1\).gif'); /* Use the imported image */
+    background-size: contain; /* Ensure the image covers the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}

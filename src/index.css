@@ -1,0 +1,43 @@
+body {
+    font-family: 'MingLiu', sans-serif;
+    cursor: url('./assets/CSNormalSelect.cur'), auto;
+    padding-top: 20px;
+}
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.country-card.light, .local-news-card.light, .list-group-item.light {
+    background-color: white;
+    color: black;
+}
+
+.country-card.dark, .local-news-card.dark {
+    background-color: #333;
+    color: white;
+}
+
+.list-group-item.dark {
+    background-color: #454545;
+    color: white;
+}
+
+/* Custom cursors for different states */
+a:hover {
+    cursor: url('./assets/CSPercisionSelect.cur'), auto; /* Hover cursor */
+}
+
+button.btn {
+    cursor: url('./assets/CSPercisionSelect.cur'), auto; /* Active cursor */
+}
+
+input, textarea {
+    cursor: url('./assets/CSTextSelect.cur'), auto; /* Text input cursor */
+}
