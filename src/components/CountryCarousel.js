@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/CountryCarousel.css'; // Import the CSS file
 
-const UNSPLASH_ACCESS_KEY = '8bo7bfH8X60VE8Wf-40M946XCBiZwzSeQJD-wgxzTJM'; // Replace with your Unsplash API key
+const UNSPLASH_ACCESS_KEY = '8bo7bfH8X60VE8Wf-40M946XCBiZwzSeQJD-wgxzTJM';
 
 const CountryCarousel = () => {
     const [countries, setCountries] = useState([]);
@@ -26,10 +26,10 @@ const CountryCarousel = () => {
     }, []);
 
     useEffect(() => {
-        // Fetch images for each country
+        // Fetch images for each country concurrently
         const fetchImages = async () => {
             const newImages = {};
-            for (const country of countries) {
+            const imagePromises = countries.map(async (country) => {
                 try {
                     const response = await axios.get(`https://api.unsplash.com/search/photos`, {
                         params: {
@@ -38,11 +38,16 @@ const CountryCarousel = () => {
                             per_page: 1
                         }
                     });
-                    newImages[country.name.common] = response.data.results[0]?.urls?.regular;
+                    const imageUrl = response.data.results[0]?.urls?.regular;
+                    if (imageUrl) {
+                        newImages[country.name.common] = imageUrl;
+                    }
                 } catch (error) {
                     console.error(`Error fetching image for ${country.name.common}:`, error);
                 }
-            }
+            });
+
+            await Promise.all(imagePromises);
             setImages(newImages);
         };
 

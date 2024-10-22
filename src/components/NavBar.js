@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../Themes/ThemeContext';
-import '../Styles/NavBar.css'
+import '../Styles/NavBar.css';
 
 const CustomNavbar = () => {
     const { theme, toggleTheme } = useTheme();

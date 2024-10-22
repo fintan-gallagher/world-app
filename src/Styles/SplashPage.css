@@ -1,80 +1,4 @@
 :root {
-  --background-color-light: linear-gradient(
-      145deg,
-      #e2dddd 10%,
-      #f0eeee 10.5% 19%,
-      #0000 19.5% 80.5%,
-      #f0eeee 81% 89.5%,
-      #8e8e8e 90%
-    ),
-    linear-gradient(
-        145deg,
-        #e2dddd 10%,
-        #f0eeee 10.5% 19%,
-        #0000 19.5% 80.5%,
-        #f0eeee 81% 89.5%,
-        #8e8e8e 90%
-      )
-      calc(54px) 108px,
-    linear-gradient(
-      35deg,
-      #e2dddd 10%,
-      #f0eeee 10.5% 19%,
-      #0000 19.5% 80.5%,
-      #f0eeee 81% 89.5%,
-      #8e8e8e 90%
-    ),
-    linear-gradient(
-        35deg,
-        #e2dddd 10%,
-        #f0eeee 10.5% 19%,
-        #0000 19.5% 80.5%,
-        #f0eeee 81% 89.5%,
-        #8e8e8e 90%
-      )
-      calc(54px) 108px,
-    conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #e2dddd 0)
-      calc(54px / 4) 0,
-    conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #8e8e8e 0) calc(54px) 0,
-    linear-gradient(90deg, #8e8e8e 38%, #e2dddd 0 50%, #8e8e8e 0 62%, #e2dddd 0); /* Light mode background color */
-  --background-color-dark: linear-gradient(
-      145deg,
-      #212121 10%,
-      #ababab 10.5% 19%,
-      #0000 19.5% 80.5%,
-      #ababab 81% 89.5%,
-      #434343 90%
-    ),
-    linear-gradient(
-        145deg,
-        #212121 10%,
-        #ababab 10.5% 19%,
-        #0000 19.5% 80.5%,
-        #ababab 81% 89.5%,
-        #434343 90%
-      )
-      calc(54px) 108px,
-    linear-gradient(
-      35deg,
-      #212121 10%,
-      #ababab 10.5% 19%,
-      #0000 19.5% 80.5%,
-      #ababab 81% 89.5%,
-      #434343 90%
-    ),
-    linear-gradient(
-        35deg,
-        #212121 10%,
-        #ababab 10.5% 19%,
-        #0000 19.5% 80.5%,
-        #ababab 81% 89.5%,
-        #434343 90%
-      )
-      calc(54px) 108px,
-    conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #212121 0)
-      calc(54px / 4) 0,
-    conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #434343 0) calc(54px) 0,
-    linear-gradient(90deg, #434343 38%, #212121 0 50%, #434343 0 62%, #212121 0);
   --background-image-light: url("../images/a74a17140a5e.gif"); /* Light mode background image */
   --background-image-dark: url("../images/f513a4640925.gif"); /* Dark mode background image */
 }
@@ -94,7 +18,7 @@ body {
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
   cursor: pointer;
   overflow: hidden;
   background-image: var(--background-image);
