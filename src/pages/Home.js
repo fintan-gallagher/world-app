@@ -29,8 +29,15 @@ const Home = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (searchTerm) {
-            axios.get(`https://restcountries.com/v3.1/name/${searchTerm}`)
+        let query = searchTerm.trim().toLowerCase();
+
+        
+        if (query === 'israel') {
+            query = 'palestine';
+        }
+
+        if (query) {
+            axios.get(`https://restcountries.com/v3.1/name/${query}`)
                 .then(response => {
                     setCountries(response.data);
                 })

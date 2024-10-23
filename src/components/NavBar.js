@@ -15,6 +15,12 @@ const CustomNavbar = () => {
                 const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d6afabb114944cc0a46c10fd536f22ef`);
                 const data = await response.json();
                 const country = data.results[0].components.country;
+
+                
+                if (country === 'Israel') {
+                    country = 'Palestine';
+                }
+
                 navigate(`/country/${country}`);
             }, (error) => {
                 console.error("Error getting location: ", error);
