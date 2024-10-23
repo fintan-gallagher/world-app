@@ -71,6 +71,7 @@ const Home = () => {
                                     flag={country.flags.png}
                                     region={country.region}
                                     population={country.population}
+                                    languages={country.languages}
                                 />
                             </Col>
                         ))}

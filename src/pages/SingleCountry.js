@@ -80,7 +80,7 @@ const SingleCountry = () => {
                 </ul>
                 
                 <LocalWeatherCard lat={country.latlng[0]} lon={country.latlng[1]} />
-                <LocalTimeCard timezone={timezone} />
+                <LocalTimeCard country={country} />
                 
             </Col>
             <LocalNewsCard country={country.cca2.toLowerCase()} className='mt-5' />
