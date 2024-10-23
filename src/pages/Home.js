@@ -72,6 +72,7 @@ const Home = () => {
                                     region={country.region}
                                     population={country.population}
                                     languages={country.languages}
+                                    country={country}
                                 />
                             </Col>
                         ))}

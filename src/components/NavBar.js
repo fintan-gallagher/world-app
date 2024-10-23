@@ -25,7 +25,7 @@ const CustomNavbar = () => {
     };
 
     return (
-        <Navbar className={theme === 'light' ? 'navbar-light' : 'navbar-dark'} expand="lg" fixed="top">
+        <Navbar className={theme === 'light' ? 'navbar-light' : 'navbar-dark'} expand="lg" fixed="top"  style={{ zIndex: 1000 }}>
             <Container fluid>
                 <Navbar.Brand as={Link} to="/">WorldApp</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -33,6 +33,7 @@ const CustomNavbar = () => {
                     <Nav className="ml-auto">
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/by-population">By Population</Nav.Link>
+                        <Nav.Link as={Link} to="/currency">Currency Conversion</Nav.Link>
                         <Button onClick={toggleTheme} variant={theme === 'light' ? 'secondary' : 'light'}>
                             {theme === 'light' ? 'DARK Mode' : 'LIGHT Mode'}
                         </Button>

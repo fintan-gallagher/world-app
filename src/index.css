@@ -34,22 +34,25 @@ background-size: 108px calc(2*108px/3);
     color: white;
 }
 
-.country-card.light, .local-news-card.light, .list-group-item.light {
-    background-color: white;
-    color: black;
+::-webkit-scrollbar {
+    width: 12px; /* Adjust the width of the scrollbar */
 }
 
-.country-card.dark, .local-news-card.dark {
-    background-color: #333;
-    color: white;
+::-webkit-scrollbar-track {
+    background: transparent; /* Make the scrollbar track transparent */
 }
 
-.list-group-item.dark {
-    background-color: #454545;
-    color: white;
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent scrollbar thumb */
+    border-radius: 6px; /* Rounded corners for the scrollbar thumb */
 }
 
-/* Custom cursors for different states */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.7); /* Darker on hover */
+}
+
+/* Custom scrollbar styles for Firefox */
 * {
-    cursor: url('assets/cruelty-squad.gif');
+    scrollbar-width: thin; /* Make the scrollbar thin */
+    scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Semi-transparent scrollbar thumb and transparent track */
 }

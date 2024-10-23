@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DigitalClock from './DigitalClock';
 
-const LocalTimeCard = ({ country }) => {
+const LocalTimeCard = ({ country, showFullDateTime = true }) => {
     const [localTime, setLocalTime] = useState('');
     const [error, setError] = useState('');
+    const [initialTime, setInitialTime] = useState(null);
+    const [timeOffset, setTimeOffset] = useState(0);
 
     useEffect(() => {
         const API_KEY = '410efc67714b4c87943c3be63c994940'; // Replace with your IPGeolocation API key
@@ -19,7 +22,9 @@ const LocalTimeCard = ({ country }) => {
             axios.get(url)
                 .then((res) => {
                     console.log('Time Response:', res.data);
-                    setLocalTime(res.data.date_time_txt); // Adjust this based on the actual structure
+                    const fetchedTime = new Date(res.data.date_time_txt);
+                    setInitialTime(fetchedTime);
+                    setTimeOffset(fetchedTime - new Date());
                 })
                 .catch((e) => {
                     console.error('Time API Error:', e);
@@ -28,13 +33,25 @@ const LocalTimeCard = ({ country }) => {
         }
     }, [country]);
 
+    useEffect(() => {
+        if (initialTime) {
+            const interval = setInterval(() => {
+                const now = new Date();
+                const updatedTime = new Date(now.getTime() + timeOffset);
+                setLocalTime(showFullDateTime ? updatedTime.toLocaleString() : updatedTime.toLocaleTimeString());
+            }, 1000);
+
+            return () => clearInterval(interval);
+        }
+    }, [initialTime, timeOffset, showFullDateTime]);
+
     return (
         <div className="local-time-card">
             <h3>Local Time</h3>
             {error ? (
                 <p>{error}</p>
             ) : (
-                <p>{localTime}</p>
+                <DigitalClock time={localTime} />
             )}
         </div>
     );

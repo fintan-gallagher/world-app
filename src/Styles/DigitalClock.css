@@ -1,0 +1,9 @@
+.digital-clock {
+    font-family: 'MingLiu', sans-serif;
+    font-size: 2rem;
+    background-color: #000;
+    color: #0f0;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}

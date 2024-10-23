@@ -19,6 +19,18 @@ app.get('/timezone', async (req, res) => {
     }
 });
 
+app.get('/currency', async (req, res) => {
+    const { apiKey } = req.query;
+    const CURRENCY_URL = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
+
+    try {
+        const response = await axios.get(CURRENCY_URL);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch currency data' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Proxy server running on http://localhost:${PORT}`);
 });

@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Card, Button, Collapse } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../Themes/ThemeContext';
+import LocalTimeCard from '../components/LocalTimeCard'; 
 
-const CountryCard = ({ name, flag, region, population, languages }) => {
+const CountryCard = ({ name, flag, region, population, languages, country }) => {
     const { theme } = useTheme();
     const [open, setOpen] = useState(false);
 
-    // Extract language names from the languages object
+
     const languageNames = languages ? Object.values(languages).join(', ') : 'N/A';
 
     return (
@@ -29,6 +30,7 @@ const CountryCard = ({ name, flag, region, population, languages }) => {
                     <div id="additional-info">
                         <p className="h4 font-weight-bold">Language: {languageNames}</p>
                         <p className="h4 font-weight-bold">Population: {population.toLocaleString()}</p>
+                        <LocalTimeCard country={country} showFullDateTime={false} /> {/* Render the LocalTimeCard component */}
                     </div>
                 </Collapse>
             </Card.Body>

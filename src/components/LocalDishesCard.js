@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, ListGroup, ListGroupItem, Image } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Image, Row, Col, Container } from 'react-bootstrap';
+
+import '../Styles/LocalDishesCard.css';
 
 const LocalDishesCard = ({ country }) => {
     const [dishes, setDishes] = useState([]);
@@ -32,17 +34,23 @@ const LocalDishesCard = ({ country }) => {
     }
 
     return (
-        <Card>
-            <Card.Header>Local Dishes</Card.Header>
-            <ListGroup variant="flush">
+        <Container>
+            <Row>
                 {dishes.map((dish, index) => (
-                    <ListGroupItem key={index}>
-                        <Image src={dish.strMealThumb} thumbnail />
-                        <p>{dish.strMeal}</p>
-                    </ListGroupItem>
+                    <Col key={index} sm={12} md={6} lg={4} className="mb-4"> {/* Use Bootstrap grid system */}
+                        <Card>
+                            <Card.Header>Local Dishes</Card.Header>
+                            <ListGroup variant="flush">
+                                <ListGroupItem>
+                                    <Image src={dish.strMealThumb} thumbnail className="local-dish-image" /> {/* Use custom CSS class */}
+                                    <p>{dish.strMeal}</p>
+                                </ListGroupItem>
+                            </ListGroup>
+                        </Card>
+                    </Col>
                 ))}
-            </ListGroup>
-        </Card>
+            </Row>
+        </Container>
     );
 };
 
