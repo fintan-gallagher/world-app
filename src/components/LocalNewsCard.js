@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { useTheme } from '../Themes/ThemeContext';
+import '../Styles/LocalNewsCard.css';
 
 const LocalNewsCard = ({ country }) => {
     const [news, setNews] = useState([]);

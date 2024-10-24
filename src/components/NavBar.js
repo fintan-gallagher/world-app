@@ -14,9 +14,8 @@ const CustomNavbar = () => {
                 const { latitude, longitude } = position.coords;
                 const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d6afabb114944cc0a46c10fd536f22ef`);
                 const data = await response.json();
-                const country = data.results[0].components.country;
+                let country = data.results[0].components.country;
 
-                
                 if (country === 'Israel') {
                     country = 'Palestine';
                 }
@@ -31,16 +30,18 @@ const CustomNavbar = () => {
     };
 
     return (
-        <Navbar className={theme === 'light' ? 'navbar-light' : 'navbar-dark'} expand="lg" fixed="top"  style={{ zIndex: 1000 }}>
+        <Navbar className={theme === 'light' ? 'navbar-light' : 'navbar-dark'} expand="lg" fixed="top" style={{ zIndex: 1000 }}>
             <Container fluid>
-                <Navbar.Brand as={Link} to="/">WorldApp</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" className="mr-auto">WorldApp</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
+                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+                    <Nav className="mx-auto">
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/by-population">By Population</Nav.Link>
                         <Nav.Link as={Link} to="/currency">Currency Conversion</Nav.Link>
-                        <Button onClick={toggleTheme} variant={theme === 'light' ? 'secondary' : 'light'}>
+                    </Nav>
+                    <Nav className="ml-auto">
+                        <Button onClick={() => { console.log('Toggling theme'); toggleTheme(); }} variant={theme === 'light' ? 'secondary' : 'light'} className="mr-2">
                             {theme === 'light' ? 'DARK Mode' : 'LIGHT Mode'}
                         </Button>
                         <Button onClick={handleLocationClick} variant={theme === 'light' ? 'secondary' : 'light'}>

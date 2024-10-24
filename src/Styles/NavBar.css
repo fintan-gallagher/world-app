@@ -75,6 +75,7 @@
         calc(54px / 4) 0,
       conic-gradient(from -90deg at 37.5% 50%, #0000 75%, #000000 0) calc(54px) 0,
       linear-gradient(90deg, #000000 38%, #454545 0 50%, #000000 0 62%, #454545 0);
+
   }
   
   .navbar-light {
@@ -86,3 +87,30 @@
     background: var(--background-color-dark);
     background-size: 108px calc(2 * 108px / 3);
   }
+
+  .navbar .navbar-light,
+.navbar .navbar-dark {
+    display: flex !important;
+    flex-basis: content !important;
+}
+
+.navbar .navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar .navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar .navbar-nav .btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}

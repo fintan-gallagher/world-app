@@ -1,0 +1,19 @@
+.local-news-card.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.local-news-card.dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.local-news-card .card-header.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.local-news-card .card-header.dark {
+    background-color: #404549;
+    color: #ffffff;
+}

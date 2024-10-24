@@ -1,4 +1,34 @@
+.local-dish-card.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.local-dish-card.dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.local-dish-card .card-header.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.local-dish-card .card-header.dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.list-group-item.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.list-group-item.dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
 .local-dish-image {
-    width: 300px; 
+    width: 100%;
     height: auto;
 }
