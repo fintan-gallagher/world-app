@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Row, Col, Container } from 'react-bootstrap';
-
+import { Container, Row, Col, Pagination } from 'react-bootstrap';
 import CountryCard from '../components/CountryCard';
 import CountryCarousel from '../components/CountryCarousel';
 
-const Home = () => {
+const Home = ({ searchTerm }) => {
     const [countries, setCountries] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const countriesPerPage = 15; 
 
     useEffect(() => {
         axios.get('https://restcountries.com/v3.1/all')
@@ -23,21 +23,9 @@ const Home = () => {
             });
     }, []);
 
-    const handleChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let query = searchTerm.trim().toLowerCase();
-
-        
-        if (query === 'israel') {
-            query = 'palestine';
-        }
-
-        if (query) {
-            axios.get(`https://restcountries.com/v3.1/name/${query}`)
+    useEffect(() => {
+        if (searchTerm) {
+            axios.get(`https://restcountries.com/v3.1/name/${searchTerm}`)
                 .then(response => {
                     setCountries(response.data);
                 })
@@ -45,7 +33,15 @@ const Home = () => {
                     setError(error);
                 });
         }
-    };
+    }, [searchTerm]);
+
+    // Calculate the countries to display based on the current page
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -58,20 +54,11 @@ const Home = () => {
     return (
         <Container>
             <div className="pt-5">
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Search for a country..."
-                        value={searchTerm}
-                        onChange={handleChange}
-                    />
-                    <button type="submit">Search</button>
-                </form>
                 <CountryCarousel />
                 <div className='mt-5'>
                     <h1>Countries</h1>
                     <Row>
-                        {countries.map(country => (
+                        {currentCountries.map(country => (
                             <Col key={country.cca3} sm={12} md={6} lg={4} className="mb-4">
                                 <CountryCard
                                     name={country.name.common}
@@ -84,6 +71,17 @@ const Home = () => {
                             </Col>
                         ))}
                     </Row>
+                    <Pagination>
+                        {Array.from({ length: Math.ceil(countries.length / countriesPerPage) }, (_, index) => (
+                            <Pagination.Item
+                                key={index + 1}
+                                active={index + 1 === currentPage}
+                                onClick={() => paginate(index + 1)}
+                            >
+                                {index + 1}
+                            </Pagination.Item>
+                        ))}
+                    </Pagination>
                 </div>
             </div>
         </Container>

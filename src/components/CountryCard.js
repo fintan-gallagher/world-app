@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Card, Button, Collapse } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../Themes/ThemeContext';
-import LocalTimeCard from '../components/LocalTimeCard'; 
+import LocalTimeCard from '../components/LocalTimeCard';
+
+import '../Styles/CountryCard.css';
 
 const CountryCard = ({ name, flag, region, population, languages, country }) => {
     const { theme } = useTheme();

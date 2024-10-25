@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Image, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { useTheme } from '../Themes/ThemeContext'; // Import the theme context
+import { useTheme } from '../Themes/ThemeContext'; 
 import '../Styles/LocalDishesCard.css';
 import '../App.css';
 
 const LocalDishesCard = ({ country }) => {
-    const { theme } = useTheme(); // Get the current theme
+    const { theme } = useTheme(); 
     const [dishes, setDishes] = useState([]);
     const [error, setError] = useState('');
 
@@ -45,11 +45,10 @@ const LocalDishesCard = ({ country }) => {
                 {dishes.map((dish, index) => (
                     <Col key={index} sm={12} md={6} lg={4} className="mb-4">
                         <Card className={`local-dish-card ${theme}`}>
-                            <Card.Header>Local Dishes</Card.Header>
+                            <Card.Header>{dish.strMeal}</Card.Header>
                             <ListGroup variant="flush">
                             <ListGroupItem className={`list-group-item ${theme}`}>
                                     <Image src={dish.strMealThumb} thumbnail className="local-dish-image" />
-                                    <p>{dish.strMeal}</p>
                                 </ListGroupItem>
                             </ListGroup>
                         </Card>

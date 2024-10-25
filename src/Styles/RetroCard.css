@@ -1,0 +1,16 @@
+.retro-card {
+    border: 2px solid #000;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 5px 5px 0 #000;
+}
+
+.retro-card.light {
+    background-color: #d3d3d3; /* Light gray for light mode */
+    color: #000;
+}
+
+.retro-card.dark {
+    background-color: #555; /* Dark gray for dark mode */
+    color: #fff;
+}

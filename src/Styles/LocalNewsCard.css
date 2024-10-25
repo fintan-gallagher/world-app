@@ -17,3 +17,38 @@
     background-color: #404549;
     color: #ffffff;
 }
+
+.local-news-card {
+    border: 2px solid #000;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 5px 5px 0 #000;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+}
+
+.local-news-card-body {
+    padding: 10px;
+    font-size: 1em;
+}
+
+.local-news-card.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.local-news-card.dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.local-news-card-body.light {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.local-news-card-body.dark {
+    background-color: #343a40;
+    color: #ffffff;
+}

@@ -9,6 +9,7 @@ import LocalWeatherCard from '../components/LocalWeatherCard';
 import LocalTimeCard from '../components/LocalTimeCard';
 import LocalNewsCard from '../components/LocalNewsCard';
 import LocalDishesCard from '../components/LocalDishesCard';
+import RetroCard from '../components/RetroCard';
 
 // Map Icon Fix
 import L from 'leaflet';
@@ -47,10 +48,11 @@ const SingleCountry = () => {
 
     const position = [country.latlng[0], country.latlng[1]];
     const timezone = `${country.region}/${country.capital}`;
-    console.log('Timezone:', timezone); // Add logging to verify the timezone value
+    console.log('Timezone:', timezone); 
 
     return (
         <Row className='mt-5'>
+            <h1>{country.name.common}</h1>
             <Col>
                 <Image src={country.flags.png} alt={`${country.name.common}'s flag`} fluid />
                 <h1>Map:</h1>
@@ -67,7 +69,8 @@ const SingleCountry = () => {
                 </MapContainer>
             </Col>
             <Col>
-                <h1>{country.name.common}</h1>
+            <RetroCard>
+                
                 <h2>Official Name: {country.name.official}</h2>
                 <h4>Region: {country.region}</h4>
                 {country.subregion && <h4>Sub Region: {country.subregion}</h4>}
@@ -80,6 +83,7 @@ const SingleCountry = () => {
                 </ul>
                 
                 <LocalWeatherCard lat={country.latlng[0]} lon={country.latlng[1]} />
+                </RetroCard>
                 <LocalTimeCard country={country} />
                 
             </Col>
