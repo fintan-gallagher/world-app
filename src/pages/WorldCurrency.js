@@ -118,7 +118,7 @@ const WorldCurrency = () => {
             y: {
                 title: {
                     display: true,
-                    text: 'Conversion Rate',
+                    text: 'Conversion Rate vs. US Dollar',
                     font: {
                         family: 'MingLiu, sans-serif',
                         size: 20,
@@ -129,6 +129,7 @@ const WorldCurrency = () => {
                 ticks: {
                     color: theme === 'light' ? '#000' : '#fff',
                     font: {
+                        family: 'MingLiu, sans-serif',
                         size: 14,
                         weight: 'bold',
                     },

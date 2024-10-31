@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import SingleCountry from './pages/SingleCountry';
-import SplashPage from './components/SplashPage';
+import SplashPage from './pages/SplashPage';
 import ByPopulation from './pages/ByPopulation';
 import WorldCurrency from './pages/WorldCurrency';
 import './App.css'; // Import the CSS file for transitions
