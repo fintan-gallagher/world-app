@@ -63,7 +63,7 @@ const Home = () => {
 
     return (
         <Container>
-            <div className="pt-5">
+            <div className="pt-5 mt-5">
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
