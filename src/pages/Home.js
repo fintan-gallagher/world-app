@@ -4,12 +4,13 @@ import { Container, Row, Col, Pagination } from 'react-bootstrap';
 import CountryCard from '../components/CountryCard';
 import CountryCarousel from '../components/CountryCarousel';
 
-const Home = ({ searchTerm }) => {
+const Home = () => {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const countriesPerPage = 15; 
+    const [searchTerm, setSearchTerm] = useState(''); // Define searchTerm and setSearchTerm
+    const countriesPerPage = 15;
 
     useEffect(() => {
         axios.get('https://restcountries.com/v3.1/all')
@@ -23,9 +24,18 @@ const Home = ({ searchTerm }) => {
             });
     }, []);
 
-    useEffect(() => {
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (searchTerm) {
-            axios.get(`https://restcountries.com/v3.1/name/${searchTerm}`)
+            let query = searchTerm.trim().toLowerCase();
+            if (query === 'israel') {
+                query = 'palestine';
+            }
+            axios.get(`https://restcountries.com/v3.1/name/${query}`)
                 .then(response => {
                     setCountries(response.data);
                 })
@@ -33,7 +43,7 @@ const Home = ({ searchTerm }) => {
                     setError(error);
                 });
         }
-    }, [searchTerm]);
+    };
 
     // Calculate the countries to display based on the current page
     const indexOfLastCountry = currentPage * countriesPerPage;
@@ -54,6 +64,15 @@ const Home = ({ searchTerm }) => {
     return (
         <Container>
             <div className="pt-5">
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Search for a country..."
+                        value={searchTerm}
+                        onChange={handleChange}
+                    />
+                    <button type="submit">Search</button>
+                </form>
                 <CountryCarousel />
                 <div className='mt-5'>
                     <h1>Countries</h1>
@@ -88,4 +107,4 @@ const Home = ({ searchTerm }) => {
     );
 };
 
-export default Home;
+export default Home; 

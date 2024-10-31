@@ -16,10 +16,6 @@ const CustomNavbar = () => {
                 const data = await response.json();
                 let country = data.results[0].components.country;
 
-                if (country === 'Israel') {
-                    country = 'Palestine';
-                }
-
                 navigate(`/country/${country}`);
             }, (error) => {
                 console.error("Error getting location: ", error);
