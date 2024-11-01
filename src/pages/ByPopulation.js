@@ -9,15 +9,17 @@ const ByPopulation = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // Fetch all countries data from the API
         axios.get('https://restcountries.com/v3.1/all')
             .then(response => {
+                // Sort the countries by population in descending order
                 const sortedCountries = response.data.sort((a, b) => b.population - a.population);
-                setCountries(sortedCountries);
-                setLoading(false);
+                setCountries(sortedCountries); // Set the sorted countries in the state
+                setLoading(false); // Set loading to false after data is fetched
             })
             .catch(error => {
-                setError(error);
-                setLoading(false);
+                setError(error); // Set the error message in the state
+                setLoading(false); // Set loading to false if there is an error
             });
     }, []);
 

@@ -11,19 +11,20 @@ const LocalDishesCard = ({ country }) => {
     const [error, setError] = useState('');
 
     useEffect(() => {
+        // Fetch the list of dishes for the given country
         axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`)
             .then(response => {
-                setDishes(response.data.meals || []);
+                setDishes(response.data.meals || []); // Set the fetched dishes to state
             })
             .catch(error => {
-                setError('Failed to fetch dishes');
+                setError('Failed to fetch dishes'); // Set error message if the request fails
             });
     }, [country]);
 
     const handleGoogleSearch = () => {
-        const query = `${country} food`;
-        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-        window.open(url, '_blank');
+        const query = `${country} food`; // Create a search query
+        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`; // Create a Google search URL
+        window.open(url, '_blank'); // Open the search URL in a new tab
     };
 
     if (error) {
@@ -33,8 +34,8 @@ const LocalDishesCard = ({ country }) => {
     if (dishes.length === 0) {
         return (
             <div>
-                <p>No dishes available for this country.</p>
-                <Button onClick={handleGoogleSearch}>Try Google</Button>
+                <p>No dishes available for this country.</p> {/* Display message if no dishes are available */}
+                <Button onClick={handleGoogleSearch}>Try Google</Button> {/* Button to search on Google */}
             </div>
         );
     }

@@ -5,18 +5,18 @@ import { useTheme } from '../Themes/ThemeContext';
 import '../Styles/NavBar.css';
 
 const CustomNavbar = () => {
-    const { theme, toggleTheme } = useTheme();
-    const navigate = useNavigate();
+    const { theme, toggleTheme } = useTheme(); // Get the current theme and toggleTheme function
+    const navigate = useNavigate(); // Get the navigate function from react-router-dom
 
     const handleLocationClick = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async (position) => {
-                const { latitude, longitude } = position.coords;
-                const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d6afabb114944cc0a46c10fd536f22ef`);
-                const data = await response.json();
-                let country = data.results[0].components.country;
+                const { latitude, longitude } = position.coords; // Extract latitude and longitude from the position
+                const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d6afabb114944cc0a46c10fd536f22ef`); // Fetch location data from the OpenCage API
+                const data = await response.json(); // Parse the response data
+                let country = data.results[0].components.country; // Extract the country name from the response data
 
-                navigate(`/country/${country}`);
+                navigate(`/country/${country}`); // Navigate to the country page
             }, (error) => {
                 console.error("Error getting location: ", error);
             });
@@ -38,9 +38,9 @@ const CustomNavbar = () => {
                     </Nav>
                     <Nav className="ml-auto">
                         <Button onClick={() => { console.log('Toggling theme'); toggleTheme(); }} variant={theme === 'light' ? 'secondary' : 'light'} className="mr-2">
-                            {theme === 'light' ? 'DARK Mode' : 'LIGHT Mode'}
+                            {theme === 'light' ? 'DARK Mode' : 'LIGHT Mode'} {/* Display the current theme mode */}
                         </Button>
-                        <Button onClick={handleLocationClick} variant={theme === 'light' ? 'secondary' : 'light'}>
+                        <Button onClick={handleLocationClick} variant={theme === 'light' ? 'secondary' : 'light'}> {/* Button to find the user's country */}
                             Find My Country
                         </Button>
                     </Nav>

@@ -13,15 +13,16 @@ const Home = () => {
     const countriesPerPage = 15;
 
     useEffect(() => {
-        axios.get('https://restcountries.com/v3.1/all')
-            .then(response => {
-                setCountries(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false);
-            });
+       // Fetch all countries data from the API
+       axios.get('https://restcountries.com/v3.1/all')
+       .then(response => {
+           setCountries(response.data); // Set the countries data in the state
+           setLoading(false); // Set loading to false after data is fetched
+       })
+       .catch(error => {
+           setError(error); // Set the error message in the state
+           setLoading(false); // Set loading to false if there is an error
+       });
     }, []);
 
     const handleChange = (e) => {
@@ -29,18 +30,19 @@ const Home = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default form submission behavior
         if (searchTerm) {
-            let query = searchTerm.trim().toLowerCase();
+            let query = searchTerm.trim().toLowerCase(); 
             if (query === 'israel') {
-                query = 'palestine';
+                query = 'palestine'; 
             }
+            // Fetch countries data based on the search term
             axios.get(`https://restcountries.com/v3.1/name/${query}`)
                 .then(response => {
-                    setCountries(response.data);
+                    setCountries(response.data); // Set the countries data in the state
                 })
                 .catch(error => {
-                    setError(error);
+                    setError(error); // Set the error message in the state
                 });
         }
     };
