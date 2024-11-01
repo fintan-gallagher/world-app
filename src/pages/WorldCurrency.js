@@ -14,6 +14,7 @@ import {
     Legend,
 } from 'chart.js';
 
+// Register Chart.js components
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -25,10 +26,10 @@ ChartJS.register(
 
 const WorldCurrency = () => {
     const { theme } = useTheme(); // Get the current theme
-    const [currencyData, setCurrencyData] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [selectedCurrencies, setSelectedCurrencies] = useState([
+    const [currencyData, setCurrencyData] = useState({}); // State to store currency data
+    const [loading, setLoading] = useState(true); // State to manage the loading state
+    const [error, setError] = useState(''); // State to store error messages
+    const [selectedCurrencies, setSelectedCurrencies] = useState([ // State to store selected currencies
         { value: 'EUR', label: 'Euro' },
         { value: 'GBP', label: 'Pound Sterling' },
     ]);
@@ -36,13 +37,13 @@ const WorldCurrency = () => {
     useEffect(() => {
         const fetchCurrencyData = async () => {
             try {
-                const API_KEY = '52d3aa3bcd2f06a51ab83c0f'; // Replace your actual API key
-                const url = `http://localhost:5000/currency?apiKey=${API_KEY}`;
-                const response = await axios.get(url);
-                const rates = response.data.conversion_rates;
+                const API_KEY = '52d3aa3bcd2f06a51ab83c0f'; // API key for the currency API
+                const url = `http://localhost:5000/currency?apiKey=${API_KEY}`; // Proxy URL for the currency API
+                const response = await axios.get(url); // Fetch currency data from the API
+                const rates = response.data.conversion_rates; // Extract conversion rates from the response
 
-                const labels = selectedCurrencies.map(currency => currency.value);
-                const data = labels.map(label => rates[label]);
+                const labels = selectedCurrencies.map(currency => currency.value); // Map selected currencies to their values
+                const data = labels.map(label => rates[label]); // Map labels to their corresponding rates
 
                 setCurrencyData({
                     labels,
@@ -50,24 +51,24 @@ const WorldCurrency = () => {
                         {
                             label: 'Currency Conversion Rates (USD)',
                             data,
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)', // Set the background color of the bars
+                            borderColor: 'rgba(75, 192, 192, 1)', // Set the border color of the bars
+                            borderWidth: 1, // Set the border width of the bars
                         },
                     ],
                 });
-                setLoading(false);
+                setLoading(false); // Set loading to false after data is fetched
             } catch (error) {
-                setError('Failed to fetch currency data');
-                setLoading(false);
+                setError('Failed to fetch currency data'); // Set the error message in the state
+                setLoading(false); // Set loading to false if there is an error
             }
         };
 
-        fetchCurrencyData();
-    }, [selectedCurrencies]);
+        fetchCurrencyData(); // Call the fetchCurrencyData function
+    }, [selectedCurrencies]); // Dependency array to re-run the effect when selectedCurrencies changes
 
     const handleCurrencyChange = (selectedOptions) => {
-        setSelectedCurrencies(selectedOptions);
+        setSelectedCurrencies(selectedOptions); // Update the selected currencies in the state
     };
 
     if (loading) {
@@ -77,11 +78,11 @@ const WorldCurrency = () => {
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
             </div>
-        );
+        ); // Display a loading spinner while fetching data
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return <div>{error}</div>; // Display the error message if there is an error
     }
 
     const currencyOptions = [
@@ -92,7 +93,7 @@ const WorldCurrency = () => {
         { value: 'CHF', label: 'Swiss Franc' },
         { value: 'AUD', label: 'Australian Dollar' },
         { value: 'CAD', label: 'Canadian Dollar' },
-    ];
+    ]; // Options for the Select component
 
     const options = {
         scales: {
@@ -148,7 +149,7 @@ const WorldCurrency = () => {
                 },
             },
         },
-    };
+    }; // Options for the Bar chart
 
     const customStyles = {
         control: (provided, state) => ({
@@ -192,7 +193,7 @@ const WorldCurrency = () => {
                 color: theme === 'light' ? '#000' : '#fff',
             },
         }),
-    };
+    }; // Custom styles for the Select component
 
     return (
         <Container className={`world-currency-container mt-5 ${theme}`}>
