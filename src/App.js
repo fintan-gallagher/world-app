@@ -11,17 +11,17 @@ import WorldCurrency from './pages/WorldCurrency';
 import './App.css'; // Import the CSS file for transitions
 
 const AppContent = () => {
-    const location = useLocation(); // Get the current location
+    const location = useLocation();
 
     return (
-        <TransitionGroup> {/* Wrap the routes in a TransitionGroup for animations */}
-            <CSSTransition key={location.key} classNames="fade" timeout={300}> {/* Apply fade transition */}
-                <Routes location={location}> {/* Render the routes based on the current location */}
-                    <Route path="/" element={<SplashPage />} /> {/* Route for the SplashPage component */}
-                    <Route path="/home" element={<Home />} /> {/* Route for the Home component */}
-                    <Route path="/country/:name" element={<SingleCountry />} /> {/* Route for the SingleCountry component */}
-                    <Route path="/by-population" element={<ByPopulation />} /> {/* Route for the ByPopulation component */}
-                    <Route path="/currency" element={<WorldCurrency />} /> {/* Route for the WorldCurrency component */}
+        <TransitionGroup>
+            <CSSTransition key={location.key} classNames="fade" timeout={300}>
+                <Routes location={location}>
+                    <Route path="/" element={<SplashPage />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/country/:name" element={<SingleCountry />} />
+                    <Route path="/by-population" element={<ByPopulation />} />
+                    <Route path="/currency" element={<WorldCurrency />} />
                 </Routes>
             </CSSTransition>
         </TransitionGroup>
@@ -30,10 +30,10 @@ const AppContent = () => {
 
 const App = () => {
     return (
-        <Router> {/* Wrap the application in a Router component */}
-            <NavBar /> {/* Render the NavBar component */}
-            <Container> {/* Wrap the content in a Container component */}
-                <AppContent /> {/* Render the AppContent component */}
+        <Router>
+            <NavBar />
+            <Container>
+                <AppContent />
             </Container>
         </Router>
     );
